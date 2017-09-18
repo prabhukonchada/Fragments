@@ -43,7 +43,6 @@ public class MainFragment extends Fragment {
 
         fragmentOne = (Button)rootView.findViewById(R.id.fragmentOne);
         fragmentTwo = (Button)rootView.findViewById(R.id.fragmentTwo);
-        fragmentThree = (Button)rootView.findViewById(R.id.fragmentThree);
 
         fragmentOne.setOnClickListener(new View.OnClickListener() {
             @Override
