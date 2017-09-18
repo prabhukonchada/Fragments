@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,8 @@ public class MainFragment extends Fragment {
     Button fragmentThree;
     FragmentOne newFragmentOne;
     FragmentTwo newFragmentTwo;
+    FragmentTransaction fragmentTransaction;
+    public final static String MAIN_FRAGMENT_TAG="MAIN_FRAGMENT";
 
     public MainFragment() {
         // Required empty public constructor
@@ -44,12 +48,30 @@ public class MainFragment extends Fragment {
         fragmentOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),"Test",Toast.LENGTH_LONG).show();
+                fragmentTransaction = getFragmentManager().beginTransaction();
+                newFragmentOne = new FragmentOne();
+                fragmentTransaction.replace(R.id.container,newFragmentOne,MAIN_FRAGMENT_TAG);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
 
+        fragmentTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fragmentTransaction = getFragmentManager().beginTransaction();
+                newFragmentTwo = new FragmentTwo();
+                fragmentTransaction.replace(R.id.container,newFragmentTwo,MAIN_FRAGMENT_TAG);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
+
         return rootView;
     }
+
+
 
 
 }
